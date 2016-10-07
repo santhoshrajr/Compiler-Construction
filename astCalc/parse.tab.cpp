@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.0.2.  */
+/* A Bison parser, made by GNU Bison 3.0.4.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "3.0.2"
+#define YYBISON_VERSION "3.0.4"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -122,7 +122,7 @@ extern int yydebug;
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE YYSTYPE;
+
 union YYSTYPE
 {
 #line 14 "parse.y" /* yacc.c:355  */
@@ -132,6 +132,8 @@ union YYSTYPE
 
 #line 134 "parse.tab.cpp" /* yacc.c:355  */
 };
+
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -145,7 +147,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 149 "parse.tab.cpp" /* yacc.c:358  */
+#line 151 "parse.tab.cpp" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -1234,59 +1236,59 @@ yyreduce:
            std::cout << "> ";
 
          }
-#line 1238 "parse.tab.cpp" /* yacc.c:1646  */
+#line 1240 "parse.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 5:
 #line 42 "parse.y" /* yacc.c:1646  */
     { (yyval.ast) = new AstNode('+', (yyvsp[-2].ast),(yyvsp[0].ast));}
-#line 1244 "parse.tab.cpp" /* yacc.c:1646  */
+#line 1246 "parse.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 6:
 #line 43 "parse.y" /* yacc.c:1646  */
     { (yyval.ast) = new AstNode('-', (yyvsp[-2].ast),(yyvsp[0].ast)); }
-#line 1250 "parse.tab.cpp" /* yacc.c:1646  */
+#line 1252 "parse.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 7:
 #line 44 "parse.y" /* yacc.c:1646  */
     { (yyval.ast) = new AstNode('*', (yyvsp[-2].ast),(yyvsp[0].ast)); }
-#line 1256 "parse.tab.cpp" /* yacc.c:1646  */
+#line 1258 "parse.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 8:
 #line 45 "parse.y" /* yacc.c:1646  */
     { (yyval.ast) = new AstNode('/', (yyvsp[-2].ast),(yyvsp[0].ast)); }
-#line 1262 "parse.tab.cpp" /* yacc.c:1646  */
+#line 1264 "parse.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 9:
 #line 46 "parse.y" /* yacc.c:1646  */
     { (yyval.ast) = new AstNode('E',(yyvsp[-2].ast),(yyvsp[0].ast)); }
-#line 1268 "parse.tab.cpp" /* yacc.c:1646  */
+#line 1270 "parse.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 10:
 #line 47 "parse.y" /* yacc.c:1646  */
     {(yyval.ast) = (yyvsp[-1].ast);}
-#line 1274 "parse.tab.cpp" /* yacc.c:1646  */
+#line 1276 "parse.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 11:
 #line 48 "parse.y" /* yacc.c:1646  */
     { (yyval.ast) = new AstNode('M', (yyvsp[0].ast), NULL);}
-#line 1280 "parse.tab.cpp" /* yacc.c:1646  */
+#line 1282 "parse.tab.cpp" /* yacc.c:1646  */
     break;
 
   case 12:
 #line 49 "parse.y" /* yacc.c:1646  */
     {(yyval.ast) = new AstNumber('K', (yyvsp[0].d));   }
-#line 1286 "parse.tab.cpp" /* yacc.c:1646  */
+#line 1288 "parse.tab.cpp" /* yacc.c:1646  */
     break;
 
 
-#line 1290 "parse.tab.cpp" /* yacc.c:1646  */
+#line 1292 "parse.tab.cpp" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires

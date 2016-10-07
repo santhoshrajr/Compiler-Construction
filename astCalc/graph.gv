@@ -6,7 +6,14 @@ node [shape = record,height=.1];
  node4[label = "<f0> |<f1> /|<f2> "]
  node0[label = "<f0> |<f1> UM|<f2> "]
  node5[label = "<f0> |<f1> **|<f2> "]
- "node1":f0   ->  "node1":f0   -> 3
- "node1":f2   -> 4
- "node1":f2   -> 5
+ "node2":f0   ->  "node2":f0   ->  "node3":f1  
+ "node3":f0   ->  "node5":f1  
+ "node5":f0   -> 3
+ "node5":f2   -> 7
+ "node3":f2   -> 6
+ "node2":f2   ->  "node0":f1  
+ "node0":f0   -> 9
+ "node2":f2   ->  "node1":f1  
+ "node1":f0   -> 8
+ "node1":f2   -> 9
 }
