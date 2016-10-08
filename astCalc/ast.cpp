@@ -21,6 +21,62 @@ double eval(Ast *a) {
   return v;
 }
 
+void getLeft(const Ast* a,std::fstream& output){
+             
+           
+              if(a->getLeft()->getNodetype()=='+'){
+                   output<< " \"node1\":f1  " <<std::endl; 
+                }
+                
+                else if(a->getLeft()->getNodetype()=='-'){
+                   output<< " \"node2\":f1  " <<std::endl; 
+                }
+                else if(a->getLeft()->getNodetype()=='*'){
+                   output<< " \"node3\":f1  " <<std::endl; 
+                }
+                else if(a->getLeft()->getNodetype()=='M'){
+                  output<< " \"node0\":f1  " <<std::endl; 
+                }
+                else if(a->getLeft()->getNodetype()=='/'){
+                  output<< " \"node4\":f1  " <<std::endl; 
+                }
+                else if(a->getLeft()->getNodetype()=='K'){
+                  output<< a->getLeft()->getNumber() <<std::endl;
+                }
+                
+                else if(a->getLeft()->getNodetype()=='E'){
+                 output<< " \"node5\":f1  " <<std::endl; 
+                }
+}
+
+
+void getRight(const Ast* a,std::fstream& output){
+if(a->getRight()->getNodetype()=='+'){
+                   output<< " \"node1\":f1  " <<std::endl; 
+                }
+               else if(a->getRight()->getNodetype()=='-'){
+                   output<< " \"node2\":f1  " <<std::endl; 
+                }
+                else if(a->getRight()->getNodetype()=='*'){
+                   output<< " \"node3\":f1  " <<std::endl; 
+                }
+                else if(a->getRight()->getNodetype()=='M'){
+                  output<< " \"node0\":f1  " <<std::endl; 
+                }
+                else if(a->getRight()->getNodetype()=='/'){
+                  output<< " \"node4\":f1  " <<std::endl; 
+                }
+                else if(a->getRight()->getNodetype()=='K'){
+                  output<< a->getRight()->getNumber() <<std::endl;
+                }
+                
+                else if(a->getRight()->getNodetype()=='E'){
+                 output<< " \"node5\":f1  " <<std::endl; 
+                }
+                 
+
+}
+
 void makeGraph(const Ast* a, std::fstream& output)  {
 
    switch( a->getNodetype() ) {
@@ -30,49 +86,12 @@ void makeGraph(const Ast* a, std::fstream& output)  {
             if(a->getLeft()){
               output << " \"node1\":f0  " <<" " << "-> ";
                 
-                if(a->getLeft()->getNodetype()=='-'){
-                   output<< " \"node2\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='*'){
-                   output<< " \"node3\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='M'){
-                  output<< " \"node0\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='/'){
-                  output<< " \"node4\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='K'){
-                  output<< a->getLeft()->getNumber() <<std::endl;
-                }
-                
-                else if(a->getLeft()->getNodetype()=='E'){
-                 output<< " \"node5\":f1  " <<std::endl; 
-                }
+               getLeft(a,output);
                 makeGraph(a->getLeft(),output);
               }
               if(a->getRight()){
                output << " \"node1\":f2  " <<" " << "-> ";
-               // output <<a->getRight()->getNodetype()<<" "<<std::endl;
-                if(a->getRight()->getNodetype()=='-'){
-                   output<< " \"node2\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='*'){
-                   output<< " \"node3\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='M'){
-                  output<< " \"node0\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='/'){
-                  output<< " \"node4\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='K'){
-                  output<< a->getRight()->getNumber() <<std::endl;
-                }
-                
-                else if(a->getRight()->getNodetype()=='E'){
-                 output<< " \"node5\":f1  " <<std::endl; 
-                }
+              getRight(a,output);
                  makeGraph(a->getRight(),output);
               }
               break;
@@ -80,50 +99,13 @@ void makeGraph(const Ast* a, std::fstream& output)  {
            
             if(a->getLeft()){
                output << " \"node2\":f0  " <<" " << "-> ";
-                //output<<a->getLeft()->getNodetype()<<" "<<std::endl;
-               if(a->getLeft()->getNodetype()=='+'){
-                   output<< " \"node1\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='*'){
-                   output<< " \"node3\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='M'){
-                  output<< " \"node0\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='/'){
-                  output<< " \"node4\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='K'){
-                  output<< a->getLeft()->getNumber() <<std::endl;
-                }
-                
-                else if(a->getLeft()->getNodetype()=='E'){
-                 output<< " \"node5\":f1  " <<std::endl; 
-                }
+               getLeft(a,output);
                 makeGraph(a->getLeft(),output);
               }
               if(a->getRight()){
                output << " \"node2\":f2  " <<" " << "-> ";
                 //output <<a->getRight()->getNodetype()<<" "<<std::endl;
-                if(a->getRight()->getNodetype()=='+'){
-                   output<< " \"node1\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='*'){
-                   output<< " \"node3\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='M'){
-                  output<< " \"node0\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='/'){
-                  output<< " \"node4\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='K'){
-                  output<< a->getRight()->getNumber() <<std::endl;
-                }
-                
-                else if(a->getRight()->getNodetype()=='E'){
-                 output<< " \"node5\":f1  " <<std::endl; 
-                }
+                getRight(a,output);
                  makeGraph(a->getRight(),output);
               }
               break;
@@ -131,50 +113,12 @@ void makeGraph(const Ast* a, std::fstream& output)  {
            
             if(a->getLeft()){
                output << " \"node3\":f0  " <<" " << "-> ";
-                //output<<a->getLeft()->getNodetype()<<" "<<std::endl;
-                if(a->getLeft()->getNodetype()=='-'){
-                   output<< " \"node2\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='+'){
-                   output<< " \"node1\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='M'){
-                  output<< " \"node0\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='/'){
-                  output<< " \"node4\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='K'){
-                  output<< a->getLeft()->getNumber() <<std::endl;
-                }
-                
-                else if(a->getLeft()->getNodetype()=='E'){
-                 output<< " \"node5\":f1  " <<std::endl; 
-                }
+               getLeft(a,output);
                 makeGraph(a->getLeft(),output);
               }
               if(a->getRight()){
                  output << " \"node3\":f2  " <<" " << "-> ";
-                //output <<a->getRight()->getNodetype()<<" "<<std::endl;
-                if(a->getRight()->getNodetype()=='-'){
-                   output<< " \"node2\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='+'){
-                   output<< " \"node1\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='M'){
-                  output<< " \"node0\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='/'){
-                  output<< " \"node4\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='K'){
-                  output<< a->getRight()->getNumber() <<std::endl;
-                }
-                
-                else if(a->getRight()->getNodetype()=='E'){
-                 output<< " \"node5\":f1  " <<std::endl; 
-                }
+                getRight(a,output);
                  makeGraph(a->getRight(),output);
               }
               break;
@@ -182,50 +126,12 @@ void makeGraph(const Ast* a, std::fstream& output)  {
             
             if(a->getLeft()){
               output << " \"node4\":f0  " <<" " << "-> ";
-                //output<<a->getLeft()->getNodetype()<<" "<<std::endl;
-                if(a->getLeft()->getNodetype()=='-'){
-                   output<< " \"node2\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='*'){
-                   output<< " \"node3\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='M'){
-                  output<< " \"node0\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='+'){
-                  output<< " \"node1\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='K'){
-                  output<< a->getLeft()->getNumber() <<std::endl;
-                }
-                
-                else if(a->getLeft()->getNodetype()=='E'){
-                 output<< " \"node5\":f1  " <<std::endl; 
-                }
+               getLeft(a,output);
                 makeGraph(a->getLeft(),output);
               }
               if(a->getRight()){
                 output << " \"node4\":f2  " <<" " << "-> ";
-                //output<<a->getRight()->getNodetype()<<" "<<std::endl;
-                if(a->getRight()->getNodetype()=='-'){
-                   output<< " \"node2\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='*'){
-                   output<< " \"node3\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='M'){
-                  output<< " \"node0\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='+'){
-                  output<< " \"node1\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='K'){
-                  output<< a->getRight()->getNumber() <<std::endl;
-                }
-                
-                else if(a->getRight()->getNodetype()=='E'){
-                 output<< " \"node5\":f1  " <<std::endl; 
-                }
+                getRight(a,output);
                  makeGraph(a->getRight(),output);
               }
               break;
@@ -233,130 +139,32 @@ void makeGraph(const Ast* a, std::fstream& output)  {
             
             if(a->getLeft()){
               output << " \"node5\":f0  " <<" " << "-> ";
-                //output<<a->getLeft()->getNodetype()<<" "<<std::endl;
-                if(a->getLeft()->getNodetype()=='-'){
-                   output<< " \"node2\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='*'){
-                   output<< " \"node3\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='M'){
-                  output<< " \"node0\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='/'){
-                  output<< " \"node2\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='K'){
-                  output<<a->getLeft()->getNumber() <<std::endl;
-                }
-                
-                else if(a->getLeft()->getNodetype()=='+'){
-                 output<< " \"node1\":f1  " <<std::endl; 
-                }
+                getLeft(a,output);
                 makeGraph(a->getLeft(),output);
               }
               if(a->getRight()){
                 output << " \"node5\":f2  " <<" " << "-> ";
-                //output<<a->getRight()->getNodetype()<<" "<<std::endl;
-                 if(a->getRight()->getNodetype()=='-'){
-                   output<< " \"node2\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='*'){
-                   output<< " \"node3\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='M'){
-                  output<< " \"node0\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='/'){
-                  output<< " \"node4\":f1  " <<std::endl; 
-                }
-                else if(a->getRight()->getNodetype()=='K'){
-                  output<< a->getRight()->getNumber() <<std::endl;
-                }
-                
-                else if(a->getRight()->getNodetype()=='+'){
-                 output<< " \"node1\":f1  " <<std::endl; 
-                }
+                getRight(a,output);
                  makeGraph(a->getRight(),output);
               }
               break;
              
-             /* output << "   " <<"fu"<< a->getNodetype() <<" " << "-> ";
-            
-              if(a->getLeft()->getNodetype()=='K')
-              output<<a->getLeft()->getNumber()<<std::endl;
-              else{
-                
-                output<<"fu"<<a->getLeft()->getNodetype()<<" "<<std::endl;
-                makeGraph(a->getLeft(),output);
-              }
-                              
-                //output<<a->getLeft()->getNodetype()<<std::endl;
-             
-             
-              output << "   " <<"fu" << a->getNodetype()<<" " << "-> ";
-                           if(a->getRight()->getNodetype()=='K')
-                  output<<a->getRight()->getNumber()<<std::endl;
-              
-               
-                output<<"fu" <<a->getRight()->getNodetype()<<" "<<std::endl;
-                  makeGraph(a->getRight(),output);
-                
-              
-              
-                  //output<<a->getRight()->getNodetype()<<std::endl;
-              break;*/
+           
     case 'M':
-             // output << "   " <<"[label=UM]"  <<" "<< "-> ";
+             
               if(a->getLeft()){
               output << " \"node0\":f0  " <<" " << "-> ";
-                //output<<a->getLeft()->getNodetype()<<" "<<std::endl;
-                 if(a->getLeft()->getNodetype()=='-'){
-                   output<< " \"node2\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='*'){
-                   output<< " \"node3\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='+'){
-                  output<< " \"node1\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='/'){
-                  output<< " \"node2\":f1  " <<std::endl; 
-                }
-                else if(a->getLeft()->getNodetype()=='K'){
-                  output<< a->getLeft()->getNumber() <<std::endl;
-                }
+                getLeft(a,output);
                 
-                else if(a->getLeft()->getNodetype()=='+'){
-                 output<< " \"node1\":f1  " <<std::endl; 
-                }
                 makeGraph(a->getLeft(),output);
                 }
-             // output<<a->getLeft()->getNodetype()<<std::endl;
+             
 
               break;
     
     case 'K': 
 
-   // output<<" node6[label = \"<f0> number|<f1>"<<" "<<a->getNumber() <<"\"]"<<std::endl;
-
-    /*output << " [label=\"ID\"]  " <<" " << "-> ";
-                output<<a->getNumber()<<" "<<std::endl;
-                //makeGraph(a->getLeft(),output);
-            if(a->getLeft()){
-              output << " \"node6\":f0  " <<" " << "-> ";
-                output<<a->getLeft()->getNumber()<<" "<<std::endl;
-                makeGraph(a->getLeft(),output);
-                }
-
-              if(a->getRight()){
-              output << " [label=K]  " <<" " << "-> ";
-                output<<a->getRight()->getNumber()<<" "<<std::endl;
-                makeGraph(a->getRight(),output);
-                }*/
-
-    /*output <<"   "<<"K" << "->";
-              output<<a<<std::endl;*/
+   
               
               break;
 
@@ -367,12 +175,7 @@ void makeGraph(const Ast* a, std::fstream& output)  {
 
 }
 
-void getSymbol(Ast* a, std::fstream& output){
-  switch( a->getNodetype() ) {
-    case 'K':  output << a->getLeft()->getNumber() << std::endl;
-  }
 
-}
 
 void makeGraph(Ast *a)  {
   std::fstream output;
@@ -383,14 +186,15 @@ void makeGraph(Ast *a)  {
   output<<" node2[label = \"<f0> |<f1> -|<f2> \"]"<<std::endl;
   output<<" node3[label = \"<f0> |<f1> *|<f2> \"]"<<std::endl;
   output<<" node4[label = \"<f0> |<f1> /|<f2> \"]"<<std::endl;
-  output<<" node0[label = \"<f0> |<f1> UM|<f2> \"]"<<std::endl;
+  output<<" node0[label = \"<f0> |<f1> UnaryMinus|<f2> \"]"<<std::endl;
   output<<" node5[label = \"<f0> |<f1> **|<f2> \"]"<<std::endl;
   
-//  output<<" node6[label = \"<f0> number|<f1> \"]"<<std::endl;
+
   makeGraph(a, output);
 
   output << "}" << std::endl;
   output.close();
+  system("dot -Tpng graph.gv -o graph.png");
 }
 
 void treeFree(Ast *a) {
